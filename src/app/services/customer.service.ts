@@ -24,6 +24,6 @@ export class CustomerService {
 
   public saveNewCustomer(customer: Customer) {
 
-    return  this.http.post<Customer>(environment.backendHost + "/customer", customer);
+    return  this.http.post<Customer>(environment.backendHost + "/customers", customer);
   }
 }

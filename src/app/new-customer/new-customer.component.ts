@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Customer} from "../model/customer.model";
 import {CustomerService} from "../services/customer.service";
 import {throwError} from "rxjs";
@@ -18,8 +18,8 @@ export class NewCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.newCustomerFormGroup = this.fb.group({
-      name: this.fb.control(null),
-      email: this.fb.control(null)
+      name: this.fb.control(null, [Validators.required, Validators.minLength(5)]),
+      email: this.fb.control(null, [Validators.required, Validators.email])
     });
   }
 
