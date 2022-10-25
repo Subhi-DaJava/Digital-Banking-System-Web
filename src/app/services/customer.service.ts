@@ -17,8 +17,13 @@ export class CustomerService {
    //return  this.http.get<Customer[]>("http://localhost:8086/customer"); //pour les gestions des erreurs, endpoint n'existe pas.
   }
 
-  public searchCustomers(keyword: string) {
+  public searchCustomers(keyword: string): Observable<Customer[]> {
 
     return  this.http.get<Customer[]>(environment.backendHost + "/customers/search?keyword=" + keyword);
+  }
+
+  public saveNewCustomer(customer: Customer) {
+
+    return  this.http.post<Customer>(environment.backendHost + "/customer", customer);
   }
 }
