@@ -1,4 +1,7 @@
 <div class="container mt-2">
+  <div *ngIf="errorMessage" class="text-bg-danger">
+    {{ errorMessage | json}}
+  </div>
   <div class="card" *ngIf="customers">
     <div class="card-header">All Customers</div>
       <div class="card-body">
