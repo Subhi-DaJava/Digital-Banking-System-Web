@@ -1,9 +1,10 @@
 <div class="container mt-2">
-  <div *ngIf="errorMessage" class="text-bg-danger">
-    {{ errorMessage | json }}
-  </div>
-  <div class="card" *ngIf="customers">
-    <div class="card-header">All Customers</div>
+  <ng-container *ngIf="customers$ | async as listCustomers; else failureOrLoading">
+<!--
+    <ng-container *ngIf="customers$ | async as listCustomers; else failure">
+-->
+    <div class="card">
+      <div class="card-header">All Customers</div>
       <div class="card-body">
         <table class="table">
           <thead>
@@ -12,13 +13,28 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let c of customers">
+          <tr *ngFor="let c of customers$ | async">
             <th>{{ c.id }}</th>
             <th>{{ c.name }}</th>
-            <th>{{ c.email }}</th>
+            <th>{{ c.email}}</th>
           </tr>
           </tbody>
         </table>
       </div>
-  </div>
+    </div>
+
+  </ng-container>
+  <ng-template #failureOrLoading>
+    <ng-container *ngIf="errorMessage; else loading">
+      <div class="text-bg-danger">
+        {{ errorMessage }}
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      <div class="text-center text-bg-danger text-capitalize">
+        The message is loading .....
+      </div>
+    </ng-template>
+
+  </ng-template>
 </div>
