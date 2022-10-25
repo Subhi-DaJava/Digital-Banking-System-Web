@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {CustomerService} from "../services/customer.service";
 
 @Component({
   selector: 'app-customers',
@@ -8,7 +8,9 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CustomersComponent implements OnInit {
   customers: any;
-  constructor(private http: HttpClient) { }
+  errorMessage!: Object;
+
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
     /*
@@ -18,12 +20,13 @@ export class CustomersComponent implements OnInit {
       console.log(error);
     });*/
 
-    this.http.get("http://localhost:8086/customers").subscribe({
+    this.customerService.getCustomers().subscribe({
       next : (data) => {
         this.customers = data;
       },
       error: (err) => {
-        console.log(err);
+      /*  console.log(err);*/
+        this.errorMessage = err; // .message;
     }
     });
   }
