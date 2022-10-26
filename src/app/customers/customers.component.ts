@@ -23,13 +23,6 @@ export class CustomersComponent implements OnInit {
       keyword : this.fb.control("")
     });
 
-   /* this.customers$ = this.customerService.getCustomers().pipe (
-      catchError(err => {
-        this.errorMessage = err.message;
-
-        return throwError(err);
-      })
-    );*/
     this.handleSearchCustomer();
   }
 
@@ -44,8 +37,8 @@ export class CustomersComponent implements OnInit {
   }
 
   handleDeleteCustomer(customer: Customer) {
-    let conf = confirm("Are you sure to delete this customer?");
-    if(!conf) return;
+    let confirmDelete = confirm("Are you sure to delete this customer?");
+    if(!confirmDelete) return;
     this.customerService.deleteCustomer(customer.id).subscribe({
       /*  next : (res) => {
           this.handleSearchCustomer();
@@ -63,4 +56,5 @@ export class CustomersComponent implements OnInit {
       }
     });
   }
+
 }

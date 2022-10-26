@@ -32,6 +32,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Delete</th>
+            <th>Update</th>
           </tr>
           </thead>
           <tbody>
@@ -44,6 +45,11 @@
                 <i class="bi bi-trash"></i>
               </button>
             </td>
+            <td>
+              <button routerLink="/update-customer" class="btn btn-primary">
+                <i class="bi bi-ubuntu"></i>
+              </button>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -53,7 +59,7 @@
   </ng-container>
   <ng-template #failureOrLoading>
     <ng-container *ngIf="errorMessage; else loading">
-      <div class="text-bg-danger">
+      <div class="text-bg-danger text-center" >
         {{ errorMessage }}
       </div>
     </ng-container>

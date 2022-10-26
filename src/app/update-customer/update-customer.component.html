@@ -1,0 +1,44 @@
+<div class="card col-md-6 offset-3">
+  <div class="card-header">Update Customer</div>
+  <div *ngIf="errorUpdateMessage" class="text-capitalize text-bg-danger text-center">
+    {{ errorUpdateMessage }}
+  </div>
+  <div class="card-body">
+    <div *ngIf="updateFormGroup">
+      <form [formGroup]="updateFormGroup" (ngSubmit)="handleUpdateCustomer()">
+        <div class="mb-3">
+          <label class="form-label">Id:</label>
+          <input type="text" formControlName="id" class="form-control">
+          <span class="text-danger"
+                *ngIf="updateFormGroup.controls['id']?.touched
+                  && updateFormGroup.controls['id']?.errors
+                   && updateFormGroup.controls['id']?.errors!['required']">
+              Id is required
+            </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Name:</label>
+          <input type="text" formControlName="name" class="form-control">
+          <span class="text-danger"
+                *ngIf="updateFormGroup.controls['name']?.touched
+                  && updateFormGroup.controls['name']?.errors
+                   && updateFormGroup.controls['name']?.errors!['required']">
+              Name is required
+            </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <input type="text" formControlName="email" class="form-control">
+          <span class="text-danger"
+                *ngIf="updateFormGroup.controls['email']?.touched
+                  && updateFormGroup.controls['email']?.errors
+                   && updateFormGroup.controls['email']?.errors!['email']">
+              Email is not valid
+            </span>
+        </div>
+        <button [disabled]="!updateFormGroup.valid" class="btn btn-primary">Update Customer</button>
+      </form>
+    </div>
+  </div>
+</div>
+
