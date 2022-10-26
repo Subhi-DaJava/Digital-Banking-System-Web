@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {AccountsService} from "../services/accounts.service";
+import {Observable} from "rxjs";
+import {AccountDetails} from "../model/account.model";
 
 @Component({
   selector: 'app-accounts',
@@ -6,10 +10,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
+  accountFormGroup!: FormGroup;
+  currentPage: number = 0;
+  pageSize : number = 5;
+  accountOperations$!: Observable<AccountDetails>;
 
-  constructor() { }
+  constructor(private fb: FormBuilder,
+              private accountService: AccountsService) { }
 
   ngOnInit(): void {
+    this.accountFormGroup = this.fb.group({
+      accountId : this.fb.control('') // ['']
+    });
   }
 
+  handleSearchAccountOperations() {
+    let accountId: string = this.accountFormGroup.value.accountId;
+
+    this.accountOperations$ = this.accountService.getAccountOperations(accountId,this.currentPage, this.pageSize);
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.handleSearchAccountOperations();
+  }
 }
