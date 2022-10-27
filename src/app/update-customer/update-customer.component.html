@@ -1,3 +1,8 @@
+<!--<div class="text-primary text-bg-light text-center fs-2">
+  {{customerId}}
+  <div></div>
+  {{customer | json}}
+</div>-->
 <div class="card col-md-6 offset-3">
   <div class="card-header">Update Customer</div>
   <div *ngIf="errorUpdateMessage" class="text-capitalize text-bg-danger text-center">
@@ -7,14 +12,7 @@
     <div *ngIf="updateFormGroup">
       <form [formGroup]="updateFormGroup" (ngSubmit)="handleUpdateCustomer()">
         <div class="mb-3">
-          <label class="form-label">Id:</label>
-          <input type="text" formControlName="id" class="form-control">
-          <span class="text-danger"
-                *ngIf="updateFormGroup.controls['id']?.touched
-                  && updateFormGroup.controls['id']?.errors
-                   && updateFormGroup.controls['id']?.errors!['required']">
-              Id is required
-            </span>
+          <input type="text" hidden formControlName="id" class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label">Name:</label>

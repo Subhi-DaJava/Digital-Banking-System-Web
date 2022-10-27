@@ -3,6 +3,7 @@ import {CustomerService} from "../services/customer.service";
 import {catchError, map, Observable, throwError} from "rxjs";
 import {Customer} from "../model/customer.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-customers',
@@ -15,7 +16,7 @@ export class CustomersComponent implements OnInit {
   errorDeleteMessage!: Object;
   searchFormGroup: FormGroup | undefined;
 
-  constructor(private customerService: CustomerService, private fb: FormBuilder) { }
+  constructor(private customerService: CustomerService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -57,4 +58,9 @@ export class CustomersComponent implements OnInit {
     });
   }
 
+  handleUpdateCustomer(customer: Customer) {
+    this.router.navigateByUrl("/update-customer/" + customer.id, {state: customer}).then(r => {
+
+    });
+  }
 }

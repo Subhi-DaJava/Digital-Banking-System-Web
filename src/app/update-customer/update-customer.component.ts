@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Customer} from "../model/customer.model";
-import {map, Observable} from "rxjs";
 import {CustomerService} from "../services/customer.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-customer',
@@ -13,17 +12,22 @@ import {Router} from "@angular/router";
 export class UpdateCustomerComponent implements OnInit {
   errorUpdateMessage!: string;
   updateFormGroup: FormGroup | undefined;
+  customerId!: string;
+  customer!: Customer;
 
-  constructor(private customerService: CustomerService,
+  constructor(private route: ActivatedRoute,
+              private customerService: CustomerService,
               private fb: FormBuilder,
-              private router: Router) { }
+              private router: Router) {
+    this.customer = this.router.getCurrentNavigation()?.extras.state as Customer;
+  }
 
   ngOnInit(): void {
-
+    this.customerId = this.route.snapshot.params['id'];
     this.updateFormGroup = this.fb.group({
-      id : this.fb.control(null, [Validators.required, Validators.minLength(1)]),
-      name : this.fb.control(null, [Validators.required, Validators.minLength(5)]),
-      email : this.fb.control(null, [Validators.required, Validators.email])
+      id : this.fb.control(this.customer.id, [Validators.required, Validators.minLength(1)]),
+      name : this.fb.control(this.customer.name, [Validators.required, Validators.minLength(5)]),
+      email : this.fb.control(this.customer.email, [Validators.required, Validators.email])
     });
   }
 
@@ -37,7 +41,9 @@ export class UpdateCustomerComponent implements OnInit {
     this.customerService.updateCustomer(customer).subscribe({
       next: (res) => {
         alert('Customer has been successfully updated!');
-        this.router.navigateByUrl("/customers");
+        this.updateFormGroup?.reset();
+        this.router.navigateByUrl("/customers").then(r => {
+        });
       },
       error: err => {
         this.errorUpdateMessage = err.message;
