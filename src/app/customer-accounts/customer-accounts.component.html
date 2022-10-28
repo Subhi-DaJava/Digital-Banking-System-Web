@@ -13,13 +13,15 @@
           <tr>
             <th>Type</th>
             <th>Account ID</th>
-            <th>Balance</th>
+            <th class="text-end">Balance</th>
             <th>Create Date</th>
             <th>Status</th>
             <th>Customer ID</th>
             <th>OverDraft</th>
             <th>Interest Rate</th>
           </tr>
+          </thead>
+          <tbody>
           <tr *ngFor="let account of accounts$ | async">
             <td>{{account.type}}</td>
             <td>{{account.id}}</td>
@@ -30,11 +32,12 @@
             <td class="text-end">{{account.overDraft}}</td>
             <td class="text-end">{{account.interestRate}}</td>
           </tr>
-          </thead>
+        </tbody>
         </table>
       </div>
     </div>
-    <div class="text-end text-capitalize text-primary fs-3"><a routerLink="customer/:id">Back to Customer Page</a></div>
+<!--<div class="text-end text-capitalize text-primary fs-3"><a routerLink="/customers/:id">Back to Customer Page</a></div>-->
+    <div class="text-end text-capitalize text-primary fs-3"><a (click)="handleCustomerPage(customerId)">Back to Customer Page</a></div>
   </ng-container>
 
   <ng-template #failureOrLoading>

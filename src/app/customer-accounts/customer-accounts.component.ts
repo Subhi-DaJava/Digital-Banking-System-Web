@@ -15,8 +15,7 @@ export class CustomerAccountsComponent implements OnInit {
   customer!: Customer;
   accounts$! : Observable<Account[]>;
   errorMessage!: Object;
-  overDraft$!: Observable<number>;
-  interestRate$!: Observable<number>;
+
   constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService) {
     this.customer = this.router.getCurrentNavigation()?.extras.state as Customer;
 
@@ -38,4 +37,8 @@ export class CustomerAccountsComponent implements OnInit {
       return throwError(err);
     }));
   }*/
+  handleCustomerPage(customerId: string) {
+    this.router.navigateByUrl("/customers/" + customerId, {state: this.customer}).then(r => {
+    });
+  }
 }
