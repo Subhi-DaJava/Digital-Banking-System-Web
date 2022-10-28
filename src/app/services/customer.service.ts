@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Customer} from "../model/customer.model";
 import {environment} from "../../environments/environment";
+import {Account} from "../model/customer-accounts.model";
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,10 @@ export class CustomerService {
 
     return  this.http.put<Customer>(environment.backendHost + "/customers/" + customer.id, customer);
 
+  }
+
+  public getAccountsByCustomer(customerId: string): Observable<Account[]> {
+
+    return  this.http.get<Account[]>(environment.backendHost + "/customers/" + customerId + "/accounts");
   }
 }

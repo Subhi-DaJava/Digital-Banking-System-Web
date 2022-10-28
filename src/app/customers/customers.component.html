@@ -33,6 +33,7 @@
             <th>Email</th>
             <th>Delete</th>
             <th>Update</th>
+            <th>Accounts</th>
           </tr>
           </thead>
           <tbody>
@@ -46,11 +47,13 @@
               </button>
             </td>
             <td>
-           <!--   <button routerLink="/update-customer" class="btn btn-primary">
-                <i class="bi bi-ubuntu"></i>
-              </button>-->
               <button (click)="handleUpdateCustomer(c)" class="btn btn-primary">
                 <i class="bi bi-ubuntu"></i>
+              </button>
+            </td>
+            <td>
+              <button (click)="handleCustomerAccounts(c)" class="btn btn-success">
+                Accounts
               </button>
             </td>
           </tr>

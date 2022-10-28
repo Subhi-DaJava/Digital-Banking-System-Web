@@ -34,7 +34,7 @@ export class CustomersComponent implements OnInit {
         this.errorMessage = err.message;
         return throwError(err);
       })
-    )
+    );
   }
 
   handleDeleteCustomer(customer: Customer) {
@@ -61,6 +61,11 @@ export class CustomersComponent implements OnInit {
   handleUpdateCustomer(customer: Customer) {
     this.router.navigateByUrl("/update-customer/" + customer.id, {state: customer}).then(r => {
 
+    });
+  }
+
+  handleCustomerAccounts(customer: Customer) {
+    this.router.navigateByUrl("/customer-accounts/" + customer.id, {state: customer}).then(r => {
     });
   }
 }
