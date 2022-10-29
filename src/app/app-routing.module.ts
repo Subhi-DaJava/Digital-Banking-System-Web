@@ -6,6 +6,7 @@ import {NewCustomerComponent} from "./new-customer/new-customer.component";
 import {UpdateCustomerComponent} from "./update-customer/update-customer.component";
 import {CustomerAccountsComponent} from "./customer-accounts/customer-accounts.component";
 import {CustomerComponent} from "./customer/customer.component";
+import {BankAccountsComponent} from "./bank-accounts/bank-accounts.component";
 
 const routes: Routes = [
   { path: "customers", component: CustomersComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: "new-customer", component: NewCustomerComponent },
   { path: "update-customer/:id", component: UpdateCustomerComponent },
   { path: "customer-accounts/:id", component: CustomerAccountsComponent },
-  { path: "customers/:id", component: CustomerComponent }
+  { path: "customers/:id", component: CustomerComponent },
+  { path: "bank-accounts", component: BankAccountsComponent },
 ];
 
 @NgModule({

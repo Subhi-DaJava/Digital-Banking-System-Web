@@ -16,9 +16,11 @@ export class CustomerAccountsComponent implements OnInit {
   accounts$! : Observable<Account[]>;
   errorMessage!: Object;
 
-  constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private customerService: CustomerService) {
     this.customer = this.router.getCurrentNavigation()?.extras.state as Customer;
-
   }
 
   ngOnInit(): void {

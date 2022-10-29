@@ -13,28 +13,23 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   public getCustomers(): Observable<Customer[]> {
-
    return  this.http.get<Customer[]>(environment.backendHost + "/customers");
    //return  this.http.get<Customer[]>("http://localhost:8086/customer"); //pour les gestions des erreurs, endpoint n'existe pas.
   }
 
   public searchCustomers(keyword: string): Observable<Customer[]> {
-
     return  this.http.get<Customer[]>(environment.backendHost + "/customers/search?keyword=" + keyword);
   }
 
   public saveNewCustomer(customer: Customer) {
-
     return  this.http.post<Customer>(environment.backendHost + "/customers", customer);
   }
 
   public deleteCustomer(id: number) {
-
     return  this.http.delete(environment.backendHost + "/customers/" + id);
   }
 
   updateCustomer(customer: Customer) {
-
     return  this.http.put<Customer>(environment.backendHost + "/customers/" + customer.id, customer);
 
   }
@@ -42,5 +37,14 @@ export class CustomerService {
   public getAccountsByCustomer(customerId: string): Observable<Account[]> {
 
     return  this.http.get<Account[]>(environment.backendHost + "/customers/" + customerId + "/accounts");
+  }
+
+
+  public getAllBankAccounts(): Observable<Account[]>{
+    return this.http.get<Account[]>(environment.backendHost + "/accounts");
+  }
+
+  public getCustomerById(customerId: string): Observable<Customer> {
+    return this.http.get<Customer>(environment.backendHost +"customers/" + customerId);
   }
 }
