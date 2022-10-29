@@ -34,7 +34,7 @@ export class CustomerService {
 
   }
 
-  public getAccountsByCustomer(customerId: string): Observable<Account[]> {
+  public getAccountsByCustomer(customerId: number): Observable<Account[]> {
 
     return  this.http.get<Account[]>(environment.backendHost + "/customers/" + customerId + "/accounts");
   }

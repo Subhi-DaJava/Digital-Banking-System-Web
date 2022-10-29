@@ -11,7 +11,7 @@ import {CustomerService} from "../services/customer.service";
   styleUrls: ['./customer-accounts.component.css']
 })
 export class CustomerAccountsComponent implements OnInit {
-  customerId!: string;
+  customerId!: number;
   customer!: Customer;
   accounts$! : Observable<Account[]>;
   errorMessage!: Object;
@@ -39,7 +39,8 @@ export class CustomerAccountsComponent implements OnInit {
       return throwError(err);
     }));
   }*/
-  handleCustomerPage(customerId: string) {
+  handleCustomerPage(customerId: number) {
+
     this.router.navigateByUrl("/customers/" + customerId, {state: this.customer}).then(r => {
     });
   }

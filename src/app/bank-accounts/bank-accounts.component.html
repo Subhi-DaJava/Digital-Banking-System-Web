@@ -29,7 +29,7 @@
             <td>{{account.status}}</td>
             <!--(click)="handleCustomerPageFromBankAccounts(account.customerDTO.id.toString())"-->
             <td class="text-center" (click)="handleCustomerPageFromBankAccounts(account.customerDTO)">
-              <a>{{account.customerDTO.id}}</a></td>
+             <button class="btn btn-primary">{{account.customerDTO.id}}</button></td>
             <td class="text-end">{{account.overDraft}}</td>
             <td class="text-end">{{account.interestRate}}</td>
           </tr>

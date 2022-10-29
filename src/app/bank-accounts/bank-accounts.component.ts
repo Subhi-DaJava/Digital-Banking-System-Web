@@ -34,7 +34,7 @@ export class BankAccountsComponent implements OnInit {
   }
 
   handleCustomerPageFromBankAccounts(customer: Customer) {
-    this.router.navigateByUrl("/customers/" + customer.id, {state: this.customer}).then(r => {
+    this.router.navigateByUrl("/customers/" + customer.id, {state: customer}).then(r => {
     })
   }
 }

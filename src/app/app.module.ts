@@ -13,6 +13,7 @@ import { UpdateCustomerComponent } from './update-customer/update-customer.compo
 import { CustomerAccountsComponent } from './customer-accounts/customer-accounts.component';
 import { CustomerComponent } from './customer/customer.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
+import { NewAccountComponent } from './new-account/new-account.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
     UpdateCustomerComponent,
     CustomerAccountsComponent,
     CustomerComponent,
-    BankAccountsComponent
+    BankAccountsComponent,
+    NewAccountComponent
   ],
     imports: [
         BrowserModule,

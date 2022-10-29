@@ -32,4 +32,9 @@ export class AccountsService {
     let data = {accountSource, accountTarget, amount, description, transactionType}
     return this.http.post(environment.backendHost+"/accounts/transfer", data);
   }
+
+  public newCurrentAccount(balance: number, overDraft: number, customerId: number) {
+    let data = {balance, overDraft, customerId}
+    return this.http.post(environment.backendHost+"/customers/" + customerId +"/current-accounts?overDraft=" + overDraft + "&initialBalance=" + balance , data);
+  }
 }

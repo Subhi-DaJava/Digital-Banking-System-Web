@@ -3,7 +3,7 @@ import {CustomerService} from "../services/customer.service";
 import {catchError, map, Observable, throwError} from "rxjs";
 import {Customer} from "../model/customer.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-customers',
@@ -15,11 +15,15 @@ export class CustomersComponent implements OnInit {
   errorMessage!: Object;
   errorDeleteMessage!: Object;
   searchFormGroup: FormGroup | undefined;
-
-  constructor(private customerService: CustomerService, private fb: FormBuilder, private router: Router) { }
+  customerId!: number;
+  constructor(
+    private customerService: CustomerService,
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.customerId = this.route.snapshot.params['id'];
     this.searchFormGroup = this.fb.group({
       keyword : this.fb.control("")
     });
@@ -66,6 +70,11 @@ export class CustomersComponent implements OnInit {
 
   handleCustomerAccounts(customer: Customer) {
     this.router.navigateByUrl("/customer-accounts/" + customer.id, {state: customer}).then(r => {
+    });
+  }
+
+  handleAddNewAccount(customer: Customer) {
+    this.router.navigateByUrl("/customers/new-account/" + customer.id, {state: customer}).then(r => {
     });
   }
 }
