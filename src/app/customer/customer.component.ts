@@ -24,13 +24,13 @@ export class CustomerComponent implements OnInit {
     this.customerId = this.route.snapshot.params['id'];
   }
 
-  handleCustomerByCustomerId(customerId: string) {
+/*  handleCustomerByCustomerId(customerId: string) {
     this.customer$ = this.customerService.getCustomerById(customerId).pipe(
       catchError(err => {
         this.errorMessage = err.message;
         return throwError(err);
       })
     );
-  }
+  }*/
 
 }

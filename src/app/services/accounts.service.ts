@@ -37,4 +37,8 @@ export class AccountsService {
     let data = {balance, overDraft, customerId}
     return this.http.post(environment.backendHost+"/customers/" + customerId +"/current-accounts?overDraft=" + overDraft + "&initialBalance=" + balance , data);
   }
+  public newSavingAccount(balance: number, interestRate: number, customerId: number) {
+    let data = {balance, interestRate, customerId}
+    return this.http.post(environment.backendHost+"/customers/" + customerId +"/saving-accounts?interestRate=" + interestRate + "&initialBalance=" + balance , data);
+  }
 }

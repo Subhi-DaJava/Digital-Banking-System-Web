@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Customer} from "../model/customer.model";
 import {throwError} from "rxjs";
 import {AccountsService} from "../services/accounts.service";
-import {CurAccount} from "../model/curAccounts.model";
+import {CurAccount} from "../model/saveAccount.model";
 
 @Component({
   selector: 'app-new-account',
@@ -16,6 +16,7 @@ export class NewAccountComponent implements OnInit {
   newAccountFormGroup!: FormGroup;
   customer!: Customer;
   customerId!: number;
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -28,35 +29,47 @@ export class NewAccountComponent implements OnInit {
     this.customerId = this.route.snapshot.params['id'];
 
     this.newAccountFormGroup = this.fb.group({
-/*
-      accountType : this.fb.control("chose account type", [Validators.required]),
-*/
-      id : this.fb.control(this.customerId, [Validators.required, Validators.minLength(1)]),
+      type : this.fb.control(null, [Validators.required]),
 
-      balance : this.fb.control(0, [Validators.required]),
-/*
-      accountStatus : this.fb.control(null, [Validators.required]),
-*/
-      overDraft: this.fb.control(0, [Validators.required]),
-/*
-      interestRate: this.fb.control(0, [Validators.required])
-*/
+      id : this.fb.control(this.customerId),
+
+      balance : this.fb.control(0, [Validators.required, Validators.min(100)]),
+
+      /*accountStatus : this.fb.control(null, [Validators.required]),*/
+
+      overDraft: this.fb.control(0, [Validators.required, Validators.minLength(2)]),
+      interestRate: this.fb.control(0, [Validators.required, Validators.min(0.01)])
     });
   }
 
   handleSaveNewAccount() {
   let curAccount: CurAccount = this.newAccountFormGroup.value;
     curAccount.customerDTO = this.customer;
-    this.accountServie.newCurrentAccount(curAccount.balance, curAccount.overDraft, curAccount.customerDTO.id).subscribe({
-    next: data => {
-      alert('A new bank account has been added to this customerId:' + curAccount.customerDTO.id);
-      this.newAccountFormGroup.reset();
-      this.router.navigateByUrl("customer-accounts/" + curAccount.customerDTO.id).then(r=>{});
-    },
-    error: err => {
-      this.errorMessage = err.message;
-      return throwError(err);
+
+    if(curAccount.type == 'CurrentAccount') {
+      this.accountServie.newCurrentAccount(curAccount.balance, curAccount.overDraft, curAccount.customerDTO.id).subscribe({
+        next: data => {
+          alert('A new current bank account has been added to this customerId:' + this.customerId);
+          this.newAccountFormGroup.reset();
+          this.router.navigateByUrl("customers/" + this.customer, {state: this.customer}).then(r=>{});
+        },
+        error: err => {
+          this.errorMessage = err.message;
+          return throwError(err);
+        }
+      });
+    } else if(curAccount.type == 'SavingAccount'){
+      this.accountServie.newSavingAccount(curAccount.balance, curAccount.interestRate, curAccount.customerDTO.id).subscribe({
+        next: data => {
+          alert('A new saving bank account has been added to this customerId:' + this.customerId);
+          this.newAccountFormGroup.reset();
+          this.router.navigateByUrl("customers/" + this.customerId, {state: this.customer}).then(r=>{});
+        },
+        error: err => {
+          this.errorMessage = err.message;
+          return throwError(err);
+        }
+      });
     }
-    });
   }
 }
