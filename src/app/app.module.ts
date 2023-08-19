@@ -15,6 +15,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.component';
 import { NewAccountComponent } from './components/new-account/new-account.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthenticateTemplateComponent } from './components/authenticate-template/authenticate-template.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginComponent } from './components/login/login.component';
     CustomerComponent,
     BankAccountsComponent,
     NewAccountComponent,
-    LoginComponent
+    LoginComponent,
+    AuthenticateTemplateComponent
   ],
     imports: [
         BrowserModule,

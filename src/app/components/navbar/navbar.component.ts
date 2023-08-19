@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getAllBankAccounts() {
-    this.router.navigateByUrl("/bank-accounts").then(r => {
+    this.router.navigateByUrl("/auth/bank-accounts").then(r => {
     });
   }
 }

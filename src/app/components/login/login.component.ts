@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth-services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
   errorMessage!: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
         console.log("JWT Token retrieved from backend: ");
         console.log(userAuth);
         this.authService.loadProfile(userAuth);
+        this.router.navigateByUrl("/auth").then();
       }, error: err => {
         console.log("Error: " + err.message);
         this.errorMessage = err.message;

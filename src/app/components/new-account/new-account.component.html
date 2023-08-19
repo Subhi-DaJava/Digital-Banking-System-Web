@@ -50,7 +50,7 @@
             </span>
           </div>
           <!--[disabled]="!newAccountFormGroup.valid"-->
-          <button class="btn btn-primary">Save New Bank Account</button>
+          <button class="btn btn-primary" [disabled]="!newAccountFormGroup.valid">Save New Bank Account</button>
         </form>
       </div>
     </div>
