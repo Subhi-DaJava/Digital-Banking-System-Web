@@ -63,18 +63,18 @@ export class CustomersComponent implements OnInit {
   }
 
   handleUpdateCustomer(customer: Customer) {
-    this.router.navigateByUrl("/update-customer/" + customer.id, {state: customer}).then(r => {
+    this.router.navigateByUrl("/auth/update-customer/" + customer.id, {state: customer}).then(r => {
 
     });
   }
 
   handleCustomerAccounts(customer: Customer) {
-    this.router.navigateByUrl("/customer-accounts/" + customer.id, {state: customer}).then(r => {
+    this.router.navigateByUrl("/auth/customer-accounts/" + customer.id, {state: customer}).then(r => {
     });
   }
 
   handleAddNewAccount(customer: Customer) {
-    this.router.navigateByUrl("/customers/new-account/" + customer.id, {state: customer}).then(r => {
+    this.router.navigateByUrl("/auth/customers/new-account/" + customer.id, {state: customer}).then(r => {
     });
   }
 }

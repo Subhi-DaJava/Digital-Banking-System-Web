@@ -51,7 +51,7 @@ export class NewAccountComponent implements OnInit {
         next: data => {
           alert('A new current bank account has been added to this customerId:' + this.customerId);
           this.newAccountFormGroup.reset();
-          this.router.navigateByUrl("customers/" + this.customer, {state: this.customer}).then(r=>{});
+          this.router.navigateByUrl("/auth/customers/" + this.customer, {state: this.customer}).then(r=>{});
         },
         error: err => {
           this.errorMessage = err.message;
@@ -63,7 +63,7 @@ export class NewAccountComponent implements OnInit {
         next: data => {
           alert('A new saving bank account has been added to this customerId:' + this.customerId);
           this.newAccountFormGroup.reset();
-          this.router.navigateByUrl("customers/" + this.customerId, {state: this.customer}).then(r=>{});
+          this.router.navigateByUrl("/auth/customers/" + this.customerId, {state: this.customer}).then(r=>{});
         },
         error: err => {
           this.errorMessage = err.message;

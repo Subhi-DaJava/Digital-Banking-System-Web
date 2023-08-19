@@ -41,7 +41,7 @@ export class CustomerAccountsComponent implements OnInit {
   }*/
   handleCustomerPage(customerId: number) {
 
-    this.router.navigateByUrl("/customers/" + customerId, {state: this.customer}).then(r => {
+    this.router.navigateByUrl("/auth/customers/" + customerId, {state: this.customer}).then(r => {
     });
   }
 }

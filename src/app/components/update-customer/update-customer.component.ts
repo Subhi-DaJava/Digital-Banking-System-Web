@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Customer} from "../../model/customer.model";
 import {CustomerService} from "../../services/customer.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -25,24 +25,25 @@ export class UpdateCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.customerId = this.route.snapshot.params['id'];
     this.updateFormGroup = this.fb.group({
-      id : this.fb.control(this.customer.id, [Validators.required, Validators.minLength(1)]),
-      name : this.fb.control(this.customer.name, [Validators.required, Validators.minLength(5)]),
-      email : this.fb.control(this.customer.email, [Validators.required, Validators.email])
+      id: this.fb.control(this.customer.id, [Validators.required, Validators.minLength(1)]),
+      name: this.fb.control(this.customer.name, [Validators.required, Validators.minLength(5)]),
+      email: this.fb.control(this.customer.email, [Validators.required, Validators.email])
     });
   }
 
   handleUpdateCustomer() {
-   let customer: Customer = this.updateFormGroup?.value;
+    //todo: delete the accounts of a customer
+    let customer: Customer = this.updateFormGroup?.value;
 
     let confirmUpdate = confirm("Are you sure to update this customer?");
-    if(!confirmUpdate)
+    if (!confirmUpdate)
       return;
 
     this.customerService.updateCustomer(customer).subscribe({
       next: (res) => {
         alert('Customer has been successfully updated!');
         this.updateFormGroup?.reset();
-        this.router.navigateByUrl("/customers").then(r => {
+        this.router.navigateByUrl("/auth/customers").then(r => {
         });
       },
       error: err => {

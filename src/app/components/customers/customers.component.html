@@ -2,7 +2,7 @@
   <ng-container *ngIf="customers$ | async as listCustomers; else failureOrLoading">
     <!--<ng-container *ngIf="customers$ | async as listCustomers; else failure">-->
     <div class="card">
-      <div class="card-header">All Customers</div>
+      <div class="card-header text text-secondary fs-4">All Customers</div>
       <div class="card-body">
         <div *ngIf="searchFormGroup">
           <!--{{this.searchFormGroup.value | json}}-->
