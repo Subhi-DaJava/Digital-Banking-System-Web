@@ -1,23 +1,28 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {CustomersComponent} from "./customers/customers.component";
-import {AccountsComponent} from "./accounts/accounts.component";
-import {NewCustomerComponent} from "./new-customer/new-customer.component";
-import {UpdateCustomerComponent} from "./update-customer/update-customer.component";
-import {CustomerAccountsComponent} from "./customer-accounts/customer-accounts.component";
-import {CustomerComponent} from "./customer/customer.component";
-import {BankAccountsComponent} from "./bank-accounts/bank-accounts.component";
-import {NewAccountComponent} from "./new-account/new-account.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {CustomersComponent} from "./components/customers/customers.component";
+import {AccountsComponent} from "./components/accounts/accounts.component";
+import {NewCustomerComponent} from "./components/new-customer/new-customer.component";
+import {UpdateCustomerComponent} from "./components/update-customer/update-customer.component";
+import {CustomerAccountsComponent} from "./components/customer-accounts/customer-accounts.component";
+import {CustomerComponent} from "./components/customer/customer.component";
+import {BankAccountsComponent} from "./components/bank-accounts/bank-accounts.component";
+import {NewAccountComponent} from "./components/new-account/new-account.component";
+import {LoginComponent} from "./components/login/login.component";
 
 const routes: Routes = [
-  { path: "customers", component: CustomersComponent },
-  { path: "accounts", component: AccountsComponent },
-  { path: "new-customer", component: NewCustomerComponent },
-  { path: "update-customer/:id", component: UpdateCustomerComponent },
-  { path: "customer-accounts/:id", component: CustomerAccountsComponent },
-  { path: "customers/:id", component: CustomerComponent },
-  { path: "bank-accounts", component: BankAccountsComponent },
-  { path: "customers/new-account/:id", component: NewAccountComponent }
+
+  {path: "login", component: LoginComponent},
+  {path: "", redirectTo: '/login', pathMatch: 'full'},
+
+  {path: "customers", component: CustomersComponent},
+  {path: "accounts", component: AccountsComponent},
+  {path: "new-customer", component: NewCustomerComponent},
+  {path: "update-customer/:id", component: UpdateCustomerComponent},
+  {path: "customer-accounts/:id", component: CustomerAccountsComponent},
+  {path: "customers/:id", component: CustomerComponent},
+  {path: "bank-accounts", component: BankAccountsComponent},
+  {path: "customers/new-account/:id", component: NewAccountComponent}
 
 ];
 
@@ -25,4 +30,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

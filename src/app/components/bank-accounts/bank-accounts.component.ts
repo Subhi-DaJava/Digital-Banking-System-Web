@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {CustomerService} from "../services/customer.service";
+import {CustomerService} from "../../services/customer.service";
 import {catchError, map, Observable, throwError} from "rxjs";
-import {Account} from "../model/customer-accounts.model";
+import {Account} from "../../model/customer-accounts.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Customer} from "../model/customer.model";
+import {Customer} from "../../model/customer.model";
 
 @Component({
   selector: 'app-bank-accounts',

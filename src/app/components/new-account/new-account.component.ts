@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Customer} from "../model/customer.model";
+import {Customer} from "../../model/customer.model";
 import {throwError} from "rxjs";
-import {AccountsService} from "../services/accounts.service";
-import {CurAccount} from "../model/saveAccount.model";
+import {AccountsService} from "../../services/accounts.service";
+import {CurAccount} from "../../model/saveAccount.model";
 
 @Component({
   selector: 'app-new-account',

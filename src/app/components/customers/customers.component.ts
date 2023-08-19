@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CustomerService} from "../services/customer.service";
+import {CustomerService} from "../../services/customer.service";
 import {catchError, map, Observable, throwError} from "rxjs";
-import {Customer} from "../model/customer.model";
+import {Customer} from "../../model/customer.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 

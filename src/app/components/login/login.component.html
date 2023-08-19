@@ -1,0 +1,24 @@
+<div class="p-3 mt-3">
+  <div class="card col-6 offset-3 text-primary">
+    <div class="card-header text-center fs-3">User Authentication</div>
+    <div class="card-body">
+      <form [formGroup]="formLogin" (ngSubmit)="login()">
+
+        <div class="mb-3 mt-3 fs-5">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" placeholder="Username" formControlName="username">
+        </div>
+
+        <div class="mb-3 fs-5">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
+        </div>
+        <div class="text-center">
+          <button class="btn btn-success fs-5" [disabled]="formLogin.invalid">
+            <i class="bi bi-door-open fs-5">  Sign In</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
