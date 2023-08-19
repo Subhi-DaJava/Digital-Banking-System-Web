@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../auth-services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
+  errorMessage!: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -19,7 +21,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-      console.log(this.formLogin.value);
+  public login() {
+      //console.log(this.formLogin.value);
+
+    let username = this.formLogin.value.username;
+    let password = this.formLogin.value.password;
+
+    this.authService.login(username, password).subscribe({
+      next: userAuth => {
+        console.log("JWT Token retrieved from backend: ");
+        console.log(userAuth);
+        this.authService.loadProfile(userAuth);
+      }, error: err => {
+        console.log("Error: " + err.message);
+        this.errorMessage = err.message;
+      }
+    });
   }
 }
