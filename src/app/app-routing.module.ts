@@ -13,11 +13,13 @@ import {AuthenticateTemplateComponent} from "./components/authenticate-template/
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthorizationGuard} from "./guards/authorization.guard";
 import {NotAuthorizedComponent} from "./components/not-authorized/not-authorized.component";
+import {HomeComponent} from "./components/home/home.component";
 
 const routes: Routes = [
 
   {path: "login", component: LoginComponent},
-  {path: "", redirectTo: '/login', pathMatch: 'full'},
+  {path: "home", component: HomeComponent},
+  {path: "", redirectTo: '/home', pathMatch: 'full'},
 
   {
     path: "auth", component: AuthenticateTemplateComponent, canActivate: [AuthGuard], children: [
