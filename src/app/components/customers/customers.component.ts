@@ -4,6 +4,7 @@ import {catchError, map, Observable, throwError} from "rxjs";
 import {Customer} from "../../model/customer.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthStateService} from "../../auth-services/auth-state.service";
 
 @Component({
   selector: 'app-customers',
@@ -12,6 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CustomersComponent implements OnInit {
   customers$!: Observable<Customer[]>;
+  //customers$!: Customer[];
   errorMessage!: Object;
   errorDeleteMessage!: Object;
   searchFormGroup: FormGroup | undefined;
@@ -20,7 +22,8 @@ export class CustomersComponent implements OnInit {
     private customerService: CustomerService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    public authState: AuthStateService) { }
 
   ngOnInit(): void {
     this.customerId = this.route.snapshot.params['id'];
@@ -39,6 +42,19 @@ export class CustomersComponent implements OnInit {
         return throwError(err);
       })
     );
+    this.authState.setAuthState({
+      badRequest400: ""
+    });
+  //  this.customerService.searchCustomers(kw).subscribe({
+  //      next: customers => {
+  //        this.customers$ = customers;
+  //        this.authState.setAuthState({
+  //            badRequest400: ""
+  //        });
+  //      }, error: err => {
+  //        this.errorMessage = err.message;
+  //      }
+  //  });
   }
 
   handleDeleteCustomer(customer: Customer) {
@@ -57,7 +73,7 @@ export class CustomersComponent implements OnInit {
           }));
       },
       error: err => {
-        this.errorDeleteMessage = err.message;
+        this.errorDeleteMessage = err;
       }
     });
   }

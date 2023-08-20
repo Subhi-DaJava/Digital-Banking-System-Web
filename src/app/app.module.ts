@@ -17,6 +17,7 @@ import {NewAccountComponent} from './components/new-account/new-account.componen
 import {LoginComponent} from './components/login/login.component';
 import {AuthenticateTemplateComponent} from './components/authenticate-template/authenticate-template.component';
 import {AppHttpInterceptorInterceptor} from "./interceptors/app-http-interceptor.interceptor";
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {AppHttpInterceptorInterceptor} from "./interceptors/app-http-interceptor
     BankAccountsComponent,
     NewAccountComponent,
     LoginComponent,
-    AuthenticateTemplateComponent
+    AuthenticateTemplateComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     BrowserModule,

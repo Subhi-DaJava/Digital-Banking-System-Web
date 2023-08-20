@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         console.log("JWT Token retrieved from backend: ");
         console.log(userAuth);
         this.authService.loadProfile(userAuth);
-        this.router.navigateByUrl("/auth").then();
+        this.router.navigateByUrl("/auth/customers").then();
       }, error: err => {
         console.log("Error: " + err.message);
         this.errorMessage = err.message;
